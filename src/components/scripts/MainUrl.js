@@ -1,0 +1,1 @@
+export const MainUrl = "http://localhost/projects/sistema_votacion/";

@@ -1,0 +1,40 @@
+.profile-box{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: .5rem 1rem;
+   color: var(--light2);
+   background: var(--dark1);
+}
+
+.profile-box .profile-card{
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   user-select: none;
+}
+
+.profile-box .profile-card:hover{
+   border-radius: .5rem;
+}
+
+.profile-card .profile-text{
+   font-size: .9rem;
+}
+
+.profile-card .profile-text p{
+   margin: 0 1rem;
+   text-align: right;
+}
+
+.profile-card .profile-text p:nth-child(2){
+   color: var(--green1);
+   font-size: .8rem;
+}
+
+.profile-card .profile-img{
+   width: 3rem;
+   height: 3rem;
+   border-radius: 50%;
+   border: 2px solid var(--green1);
+}

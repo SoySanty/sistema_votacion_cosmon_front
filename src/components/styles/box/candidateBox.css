@@ -1,0 +1,17 @@
+.candidate-box .box-body{
+   display: flex;
+   flex-direction: column;
+   gap: .5rem;
+   padding: 1rem;
+}
+
+.candidate-box .box-body .candidate-item{
+   padding: .5rem 1rem;
+   background: var(--light2);
+   border-radius: .5rem;
+}
+
+
+.candidate-box .box-body .btn-admin-candidate{
+   margin-top: .5rem;
+}

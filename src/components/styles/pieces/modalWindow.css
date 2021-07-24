@@ -1,0 +1,98 @@
+.modal-container{
+   position: fixed;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background: var(--dark-t);
+   box-sizing: border-box;
+   z-index: 2;
+}
+
+.modal-container .content-box {
+   position: relative;
+   display: flex;
+   gap: .5rem;
+   flex-direction: column;
+   width: 27rem;
+   background: var(--light2);
+   border-radius: .5rem;
+   padding: 2rem;
+   animation: openWindow .5s;
+}
+
+.modal-container .content-box p{
+   background: var(--light1);
+   padding: .5rem 1rem;
+   border-radius: .5rem;
+}
+
+.modal-container .content-box p b{
+   margin-right: .5rem;
+}
+
+.modal-container .content-box .modal-title{
+   text-align: center;
+   margin-bottom: 1rem;
+   font-size: 1.2rem;
+   text-transform: uppercase;
+   color: var(--light1);
+   background: var(--dark1);
+}
+
+.modal-container .content-box .modal-form{
+   width: 100%;
+}
+
+.modal-container .content-box input,
+.modal-container .content-box select
+{
+   padding: .5rem .7rem;
+   border-radius: .5rem;
+   outline: none;
+   border: none;
+   margin: .5rem 0;
+}
+
+.modal-container .content-box .modal-form label{
+   font-size: .8rem;
+}
+
+.modal-container .content-box .modal-form input[type=text],
+.modal-container .content-box .modal-form input[type=date],
+.modal-container .content-box .modal-form select{
+   width: 100%;
+}
+
+.modal-container .content-box .buttons{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 1rem;
+}
+
+.modal-container .content-box .buttons input[type=submit]{
+   transition: .2s;
+   margin: 0 .5rem;
+   cursor: pointer;
+   padding: .5rem 2rem;
+}
+
+.modal-container .content-box .buttons input[type=submit]:hover{
+   filter: contrast(1.1);
+   transform: scale(1.03);
+}
+
+.modal-container .content-box .buttons .btn-cancel{
+   background: var(--red1);
+   color: var(--light2);
+}
+
+.modal-container .content-box .buttons .btn-accept{
+   background: var(--blue1);
+   color: var(--light2);
+}

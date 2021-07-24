@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Screens from './components/screens/Screens';
+import './components/styles/app.css';
+import { GlobalContext } from './components/context/GlobalContext';
+import {
+  Route,
+  Switch,
+  BrowserRouter as Router
+} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <GlobalContext>
+    <Router className="App">
+      <Switch>
+
+        <Route path='/' exact>
+            <Screens target="home" />
+        </Route>
+
+        <Route path='/eventos' exact>
+            <Screens target="eventos" />
+        </Route>
+
+        <Route path='/login' exact>
+          <Screens target="login" />
+        </Route>
+
+        <Route path='/*'>
+          <Screens target="default" />
+        </Route>
+
+      </Switch>
+    </Router>
+  </GlobalContext>
   );
 }
 

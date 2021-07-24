@@ -1,0 +1,63 @@
+.category-admin-box .box-body{
+   padding: 1rem;
+}
+
+.category-admin-box .box-body .add-event-button{
+   margin-top: 1rem;
+}
+
+.category-admin-box .box-body .category-list{
+   display: flex;
+   flex-direction: column;
+   gap: .5rem;
+   max-height: 25rem;
+   overflow: auto;
+}
+
+.category-admin-box .box-body .category-list::-webkit-scrollbar{
+   display: none;
+}
+
+.category-admin-box .box-body .category-item{
+   transition: .2s;
+   display: flex;
+   justify-content: space-between;
+   justify-items: center;
+   padding: .5rem 1rem;
+   background: var(--light2);
+   border-radius: .5rem;
+   border-left: 0rem solid transparent;
+   cursor: pointer;
+}
+
+.category-admin-box .box-body .category-item .date-event{
+   font-size: .7rem;
+}
+
+.category-admin-box .box-body .category-item .option-list{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.category-admin-box .box-body .category-item .option-list .icon{
+   font-size: 1rem;
+   margin: 0 .1rem;
+   color: var(--dark-t);
+}
+
+.category-admin-box .box-body .category-item .option-list .icon:hover{
+   transform: scale(1.1);
+}
+
+.category-admin-box .box-body .category-item .option-list .t-green:hover{
+   color: var(--green1);
+}
+
+.category-admin-box .box-body .category-item .option-list .t-blue:hover{
+   color: var(--blue1);
+}
+
+.category-admin-box .box-body .category-item .option-list .t-red:hover{
+   color: var(--red1);
+}

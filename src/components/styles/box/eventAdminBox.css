@@ -1,0 +1,68 @@
+.event-admin-box .box-body{
+   padding: 1rem;
+}
+
+.event-admin-box .box-body .add-event-button{
+   margin-top: 1rem;
+}
+
+.event-admin-box .box-body .event-list{
+   display: flex;
+   flex-direction: column;
+   gap: .5rem;
+   max-height: 25rem;
+   overflow: auto;
+}
+
+.event-admin-box .box-body .event-list::-webkit-scrollbar{
+   display: none;
+}
+
+.event-admin-box .box-body .event-item{
+   transition: .2s;
+   display: flex;
+   justify-content: space-between;
+   justify-items: center;
+   padding: .5rem 1rem;
+   /* margin-bottom: .5rem; */
+   background: var(--light2);
+   border-radius: .5rem;
+   border-left: 0rem solid transparent;
+   cursor: pointer;
+}
+.event-admin-box .box-body .event-item:hover,
+.event-admin-box .box-body .active{
+   border-left: .5rem solid var(--green1);
+}
+
+.event-admin-box .box-body .event-item .date-event{
+   font-size: .7rem;
+}
+
+.event-admin-box .box-body .event-item .option-list{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.event-admin-box .box-body .event-item .option-list .icon{
+   font-size: 1rem;
+   margin: 0 .1rem;
+   color: var(--dark-t);
+}
+
+.event-admin-box .box-body .event-item .option-list .icon:hover{
+   transform: scale(1.1);
+}
+
+.event-admin-box .box-body .event-item .option-list .t-green:hover{
+   color: var(--green1);
+}
+
+.event-admin-box .box-body .event-item .option-list .t-blue:hover{
+   color: var(--blue1);
+}
+
+.event-admin-box .box-body .event-item .option-list .t-red:hover{
+   color: var(--red1);
+}

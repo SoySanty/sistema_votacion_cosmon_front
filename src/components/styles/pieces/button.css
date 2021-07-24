@@ -1,0 +1,21 @@
+.btn{
+   padding: .5rem 1rem;
+   border: none;
+   color: var(--light2);
+   background: var(--green1);
+   border-radius: .5rem;
+   cursor: pointer;
+ }
+ 
+ .btn:hover{
+   opacity: .9;
+ }
+ 
+ .btn:hover .icon{
+   animation: .3s iconAnim linear; /*Las animaciones estan en el archivo index.css*/
+ }
+ 
+ .btn .icon{
+   margin-right: .5rem;
+ }
+ 

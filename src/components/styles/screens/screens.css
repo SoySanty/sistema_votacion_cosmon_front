@@ -1,0 +1,23 @@
+.container{
+   background: var(--light2);
+}
+
+.container .box-container{
+   display: grid;
+   gap: 1rem;
+   grid-template-columns: 1fr 1fr;
+   padding: 1rem;
+}
+
+.container .box-container .box{
+   border-radius: .5rem;
+   overflow: hidden;
+   background: var(--light1);
+}
+
+.container .box-container .box .box-title{
+   padding: .5rem 1rem;
+   color: var(--light2);
+   background: var(--green1);
+   text-transform: uppercase;
+}

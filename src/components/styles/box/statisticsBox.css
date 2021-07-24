@@ -1,0 +1,14 @@
+.statistics-box{
+   grid-column: span 2;
+   border-radius: .5rem;
+   overflow: hidden;
+   background: var(--light1);
+}
+
+.statistics-box .statistics-chart{
+   padding: 1rem;
+}
+
+.statistics-box .statistics-chart .chart{
+   color: var(--dark1);
+}

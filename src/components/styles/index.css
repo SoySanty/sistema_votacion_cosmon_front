@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root{
+    --dark1: #262626;
+    --dark2: #3f3f3f;
+    --dark-t: rgba(38, 38, 38, 0.631);
+    --dark-t2: rgba(38, 38, 38, 0.376);
+    --light1: #fff;
+    --light2: #EAEAEA;
+    --light-t: rgba(255,255,255,.4);
+    --green1: #20818C;
+    --green2: #71b878;
+    --red1: #d84557;
+    --blue1: #2285d4;
+}
+
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+
+/*Animacion de todos los íconos*/
+@keyframes iconAnim { 
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+
+/*Animacion ala brir ventanas modales*/
+@keyframes openWindow {
+  from{
+    opacity: 0;
+    transform: scale(1.1);
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
