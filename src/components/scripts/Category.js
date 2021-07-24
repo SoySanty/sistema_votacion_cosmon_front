@@ -38,85 +38,94 @@ export const insertCategoryForm = props => {
    });
 }
 
-export const updateEventForm = props => {
+export const updateCategoryForm = props => {
 
    const {
       idEvent,
-      event,
-      inicio,
-      final,
-      elecciones,
+      idCategory,
+      category,
+      eventList,
       setModalData
    } = props
    
    const content = (
       <>
-         <input defaultValue={idEvent} type="hidden" name="nro_evento"/>
-         <label htmlFor="nombre_evento">Nombre del evento</label>
-         <input defaultValue={event} type="text" required name="nombre_evento" placeholder="Nombre del evento" autoComplete="off"/>
-         <label htmlFor="fecha_inicio">Inicio del evento</label>
-         <input defaultValue={inicio} type="date" required name="fecha_inicio" id="fecha_inicio"/>
-         <label htmlFor="fecha_elecciones">Día de las elecciones</label>
-         <input defaultValue={final} type="date" required name="fecha_elecciones" id="fecha_elecciones"/>
-         <label htmlFor="fecha_final">Final del evento</label>
-         <input defaultValue={elecciones} type="date" required name="fecha_final" id="fecha_final"/>
+         <input type="hidden" name="nro_categoria" defaultValue={idCategory}/>
+         <label htmlFor="nombre_categoria">Nombre de la categoría</label>
+         <input type="text" required 
+         name="nombre_categoria" placeholder="Nombre de la categoría" 
+         autoComplete="off" defaultValue={category}/>
+         <label htmlFor="nro_evento">Evento</label>
+         <select name="nro_evento" id="nro_evento">
+            <option value={idEvent} hidden>Evento</option>
+            {
+               eventList.map((e, index)=>(
+                  <option value={e.nro} key={index}>{e.evento}</option>
+               ))
+            }
+         </select>
       </>
    );
 
    setModalData({
       type: "form",
-      title: "Modificar un evento",
-      formId: "modificarEvento",
+      title: "Modificar una categoría",
+      formId: "modificarCategoria",
       content,
-      onSubmit: updateEvent
+      onSubmit: updateCategory
    });
 }
 
-export const removeEventForm = props => {
+export const removeCategoryForm = props => {
 
    const {
-      idEvent,
-      event,
+      idCategory,
+      category,
       setModalData
    } = props
    
    const content = (
       <>
-         <input defaultValue={idEvent} type="hidden" name="nro_evento"/>
-         <p>¿Estas seguro que quieres eliminar <b className="t-green">"{event}"</b> de forma permanente?</p>
+         <input defaultValue={idCategory} type="hidden" name="nro_categoria"/>
+         <p>¿Estas seguro que quieres eliminar <b className="t-green">"{category}"</b> de forma permanente?</p>
       </>
    );
 
    setModalData({
       type: "form",
       title: "Eliminar",
-      formId: "eliminarEvento",
+      formId: "eliminarCategoria",
       content,
-      onSubmit: removeEvent
+      onSubmit: removeCategory
    });
 }
 
-export const showEventDetails = props => {
+export const showCategoryDetails = props => {
 
    const {
-      event,
-      inicio,
-      final,
-      elecciones,
+      nroEvent,
+      category,
+      eventList,
       setModalData
    } = props
+
+   let event = 0;
+   eventList.forEach(e => {
+      if(parseInt(e.nro) === parseInt(nroEvent)){
+         event = e.evento;
+      }
+   })
+   
    const content = (
       <>
-         <p><b>Nombre: </b>{event}</p>
-         <p><b>Inicio del evento: </b>{inicio}</p>
-         <p><b>Día de las elecciones: </b>{elecciones}</p>
-         <p><b>Final del evento: </b>{final}</p>
+         <p><b>Categoría: </b>{category}</p>
+         <p><b>Evento: </b>{event}</p>
       </>
    )
    setModalData({
       type: "info",
       title: "Detalles",
-      formId: "agregarEvento",
+      formId: "category",
       content,
    });
 
@@ -137,10 +146,10 @@ const insertCategory = async form => {
    
 }
 
-const updateEvent = async form => {
+const updateCategory = async form => {
 
    const formData = new FormData(form);
-   const url = `${MainUrl}?show=evento&target=modificar_evento`;
+   const url = `${MainUrl}?show=categoria&target=modificar_categoria`;
    const data = {
       method: 'POST',
       body: formData
@@ -152,17 +161,16 @@ const updateEvent = async form => {
    
 }
 
-const removeEvent = async form => {
+const removeCategory = async form => {
 
    const formData = new FormData(form);
-   const url = `${MainUrl}?show=evento&target=eliminar_evento`;
+   const url = `${MainUrl}?show=categoria&target=eliminar_categoria`;
    const data = {
       method: 'POST',
       body: formData
    }
    const request = await fetch(url, data);
    const response = await request.json();
-   
    console.log(response);
    
 }

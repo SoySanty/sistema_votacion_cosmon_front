@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons'
 import {
    insertCategoryForm,
-   updateEventForm,
-   showEventDetails,
-   removeEventForm
+   updateCategoryForm,
+   showCategoryDetails,
+   removeCategoryForm
 } from '../scripts/Category'
 import Button from '../pieces/Button'
 
@@ -70,12 +70,11 @@ const CategoryAdminBox = () => {
                                  icon={faEye} 
                                  className="icon t-green" 
                                  onClick={() => {
-                                    showEventDetails({
-                                       event: e.evento,
-                                       inicio: e.inicio,
-                                       elecciones: e.dia_elecciones,
-                                       final: e.final,
-                                       // setModalData
+                                    showCategoryDetails({
+                                       category: e.categoria,
+                                       nroEvent: e.nro_evento,
+                                       eventList,
+                                       setModalData
                                     })
                                     setModal(true)
                                  }} 
@@ -87,13 +86,12 @@ const CategoryAdminBox = () => {
                                  icon={faEdit} 
                                  className="icon t-blue" 
                                  onClick={() => {
-                                    updateEventForm({
-                                       idEvent: e.nro,
-                                       event: e.evento,
-                                       inicio: e.inicio,
-                                       final: e.final,
-                                       elecciones: e.dia_elecciones,
-                                       // setModalData
+                                    updateCategoryForm({
+                                       idEvent: e.nro_evento,
+                                       idCategory: e.nro,
+                                       category: e.categoria,
+                                       eventList,
+                                       setModalData
                                     })
                                     setModal(true)
                                  }} 
@@ -105,10 +103,10 @@ const CategoryAdminBox = () => {
                                  icon={faTrashAlt} 
                                  className="icon t-red" 
                                  onClick={() => {
-                                    removeEventForm({
-                                       idEvent: e.nro,
-                                       event: e.evento,
-                                       // setModalData
+                                    removeCategoryForm({
+                                       idCategory: e.nro,
+                                       category: e.categoria,
+                                       setModalData
                                     })
                                     setModal(true)
                                  }} 
