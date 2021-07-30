@@ -77,6 +77,7 @@ const EventAdminBox = () => {
                                     event: e.evento,
                                     inicio: e.inicio,
                                     elecciones: e.dia_elecciones,
+                                    finalElecciones: e.dia_elecciones_final,
                                     final: e.final,
                                     setModalData
                                  })
@@ -96,6 +97,7 @@ const EventAdminBox = () => {
                                     inicio: e.inicio,
                                     final: e.final,
                                     elecciones: e.dia_elecciones,
+                                    finalElecciones: e.dia_elecciones_final,
                                     setModalData
                                  })
                                  setModal(true)

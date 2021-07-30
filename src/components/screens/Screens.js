@@ -14,6 +14,7 @@ const titlePage = props => {
 
    const titleTarget = {
       home: "Sistema de elecciones",
+      eventos: "Administrar eventos",
       login: "Inicio de sesion",
       default: "Página no encontrada",
    }

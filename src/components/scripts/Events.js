@@ -18,8 +18,10 @@ export const insertEventForm = props => {
          <input type="text" required name="nombre_evento" placeholder="Nombre del evento" autoComplete="off"/>
          <label htmlFor="fecha_inicio">Inicio del evento</label>
          <input type="date" required name="fecha_inicio" id="fecha_inicio"/>
-         <label htmlFor="fecha_elecciones">Día de las elecciones</label>
-         <input type="date" required name="fecha_elecciones" id="fecha_elecciones"/>
+         <label htmlFor="dia_elecciones">Día de las elecciones (DD-MM-YYY 00:00)</label>
+         <input type="datetime-local" required name="dia_elecciones" id="dia_elecciones"/>
+         <label htmlFor="dia_elecciones_final">Final de las elecciones (DD-MM-YYY 00:00)</label>
+         <input type="datetime-local" required name="dia_elecciones_final" id="dia_elecciones_final"/>
          <label htmlFor="fecha_final">Final del evento</label>
          <input type="date" required name="fecha_final" id="fecha_final"/>
       </>
@@ -42,8 +44,28 @@ export const updateEventForm = props => {
       inicio,
       final,
       elecciones,
+      finalElecciones,
       setModalData
    } = props
+
+   //formatear la fecha para que html: datetime-local reconozca la fecha
+   const formatDataTime = (date = new Date())  =>{
+      const dateConcat = `${date.getFullYear()}-${
+         date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1)
+      }-${
+         date.getDate() < 10 ? "0" + date.getDate() : date.getDate()
+      }`
+      const time = date.toLocaleTimeString()
+
+      return `${dateConcat}T${time}` ;
+   }
+
+
+   let inicio_elecciones = new Date(elecciones)
+   let final_elecciones = new Date(finalElecciones)
+   inicio_elecciones = formatDataTime(inicio_elecciones);
+   final_elecciones = formatDataTime(final_elecciones);
+
    
    const content = (
       <>
@@ -52,10 +74,14 @@ export const updateEventForm = props => {
          <input defaultValue={event} type="text" required name="nombre_evento" placeholder="Nombre del evento" autoComplete="off"/>
          <label htmlFor="fecha_inicio">Inicio del evento</label>
          <input defaultValue={inicio} type="date" required name="fecha_inicio" id="fecha_inicio"/>
-         <label htmlFor="fecha_elecciones">Día de las elecciones</label>
-         <input defaultValue={final} type="date" required name="fecha_elecciones" id="fecha_elecciones"/>
+         <label htmlFor="dia_elecciones">Día de las elecciones (DD-MM-YYY 00:00)</label>
+         <input defaultValue={inicio_elecciones} type="datetime-local" required name="dia_elecciones" id="dia_elecciones"/>
+         <label htmlFor="dia_elecciones_final">Final de las elecciones (DD-MM-YYY 00:00)</label>
+         <input defaultValue={final_elecciones} type="datetime-local" required name="dia_elecciones_final" id="dia_elecciones_final"
+         onChange={e=>console.log(e.target.value)}
+         />
          <label htmlFor="fecha_final">Final del evento</label>
-         <input defaultValue={elecciones} type="date" required name="fecha_final" id="fecha_final"/>
+         <input defaultValue={final} type="date" required name="fecha_final" id="fecha_final"/>
       </>
    );
 
@@ -99,6 +125,7 @@ export const showEventDetails = props => {
       inicio,
       final,
       elecciones,
+      finalElecciones,
       setModalData
    } = props
    const content = (
@@ -106,6 +133,7 @@ export const showEventDetails = props => {
          <p><b>Nombre: </b>{event}</p>
          <p><b>Inicio del evento: </b>{inicio}</p>
          <p><b>Día de las elecciones: </b>{elecciones}</p>
+         <p><b>Final de las elecciones: </b>{finalElecciones}</p>
          <p><b>Final del evento: </b>{final}</p>
       </>
    )

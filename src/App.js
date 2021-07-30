@@ -22,6 +22,10 @@ function App() {
             <Screens target="eventos" />
         </Route>
 
+        <Route path='/candidatos' exact>
+            <Screens target="candidatos" />
+        </Route>
+
         <Route path='/login' exact>
           <Screens target="login" />
         </Route>

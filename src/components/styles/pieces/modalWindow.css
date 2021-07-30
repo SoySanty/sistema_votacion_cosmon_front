@@ -63,6 +63,7 @@
 
 .modal-container .content-box .modal-form input[type=text],
 .modal-container .content-box .modal-form input[type=date],
+.modal-container .content-box .modal-form input[type=datetime-local],
 .modal-container .content-box .modal-form select{
    width: 100%;
 }
