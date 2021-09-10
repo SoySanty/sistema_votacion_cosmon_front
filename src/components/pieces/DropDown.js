@@ -28,27 +28,38 @@ export const DropDownA = props => {
    useEffect(()=>{
       setTitleDropdown(titleText)
    },[data, titleText]);
-      
-   //para colapsar o no las listas
-   const [collapse, setCollapse] = useState(false);
-   const clickDropdown = () => {
-      collapse ? setCollapse(false) : setCollapse(true);
-   }
 
    return (
       <div
          className={`dropdown-a-container ${className}`}
-         onClick={() => {
-            clickDropdown();
+         onClick={(e) =>{
+            const lists = document.querySelectorAll(".dropdown-list")
+            const get = e =>{
+               if(e.classList.contains("dropdown-a-container")){
+                  return e
+               }else{
+                  return get(e.parentNode)
+               }
+            }
+            const list = get(e.target).querySelector(".dropdown-list")
+            let height = 0
+            if(list.clientHeight === 0){
+               height = list.scrollHeight
+            }
+            lists.forEach( e => e.style.height = 0 )
+            list.style.height = `${height}px`
          }}
       >
 
          <div className="dropdown-title">
             <p>{titleDropdown}</p>
-            <FontAwesomeIcon icon={faChevronDown} className={`icon ${collapse ? "active" : ""}`} />
+            <FontAwesomeIcon icon={faChevronDown} className={`icon`} />
          </div>
 
-         <div className={`dropdown-list ${collapse ? "enable" : ""}`} id="dropDownList">
+         <div 
+            className={`dropdown-list`} 
+            id="dropDownList"
+         >
 
             {
                data.map( (e, index)=> (

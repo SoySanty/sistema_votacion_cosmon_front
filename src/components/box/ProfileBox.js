@@ -11,7 +11,7 @@ const ProfileBox = () => {
                <p className="profile-name">Lorenzo Santiago Saul Arias Villegas</p>
                <p className="profile-state">ADMINISTRADOR</p>
             </div>
-            <img className="profile-img" src={`${MainUrl}view/default/profile.png`} alt="profile" />
+            <img className="profile-img" src={`${MainUrl}view/img/default/profile.png`} alt="profile" />
          </div>
       </div>
    )

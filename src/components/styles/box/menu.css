@@ -5,7 +5,6 @@
    position: relative;
    display: block;
    background: var(--dark1);
-   color: var(--light1);
    padding: 1rem;
    user-select: none;
 }
@@ -69,7 +68,7 @@
 
 .menu-container .header ul li:hover,
 .menu-container .header ul li.active{
-   background: var(--green1);
+   background: var(--orange1);
    color: var(--light1);
 }
 

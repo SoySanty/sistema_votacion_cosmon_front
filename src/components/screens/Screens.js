@@ -8,6 +8,8 @@ import CandidateBox from '../box/CandidateBox'
 import StatisticsBox from '../box/StatisticsBox'
 import EventAdminBox from '../box/EventAdminBox'
 import CategoryAdminBox from '../box/CategoryAdminBox';
+import CandidateAdminBox from '../box/CandidateAdminBox';
+import CandidateAdminList from '../box/CandidateAdminList';
 
 //Cambiar el título de la página
 const titlePage = props => {
@@ -15,6 +17,8 @@ const titlePage = props => {
    const titleTarget = {
       home: "Sistema de elecciones",
       eventos: "Administrar eventos",
+      candidatos: "Administrar candidatos",
+      usuario: "Gestion de usuario",
       login: "Inicio de sesion",
       default: "Página no encontrada",
    }
@@ -37,6 +41,12 @@ const contentPage = props => {
       <>
          <EventAdminBox />
          <CategoryAdminBox />
+      </>,
+      candidatos:
+      <>
+         <EventBox />
+         <CandidateAdminBox />
+         <CandidateAdminList />
       </>
    }
    return content[target] || <></>

@@ -1,0 +1,92 @@
+.candidate-list{
+   grid-column: span 2;
+   border-radius: .5rem;
+   overflow: hidden;
+   background: var(--light1);
+}
+
+.candidate-list .box-content .header-table{
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin-bottom: 1rem;
+}
+
+.box-content .candidate-table-container{
+   width: 100%;
+   border-spacing: 0;
+   border: 1px solid var(--blue1);
+   overflow: hidden;
+}
+
+.box-content .candidate-table-container thead{
+   text-transform: uppercase;
+}
+
+.box-content .candidate-table-container thead tr td{
+   color: var(--light2);
+   background: var(--blue1);
+}
+
+.box-content .candidate-table-container thead tr td:nth-child(1),
+.box-content .candidate-table-container thead tr td:nth-child(4){
+   text-align: center;
+}
+
+.box-content .candidate-table-container tr td{
+   padding: 1rem;
+   cursor: pointer;
+}
+
+.box-content .candidate-table-container tbody tr:hover td{
+   background: var(--light2);
+}
+
+.box-content .candidate-table-container tbody tr .profile-container{
+   padding: 0;
+}
+
+.box-content .candidate-table-container tbody tr td .profile-photo{
+   position: relative;
+   margin: 0 auto;
+   width: 2.5rem;
+   height: 2.5rem;
+}
+
+.box-content .candidate-table-container tbody tr td .profile-photo img{
+   width: 100%;
+   height: 100%;
+}
+
+
+.option-list{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.option-list .icon{
+   font-size: 1rem;
+   margin: 0 .1rem;
+   color: var(--dark-t);
+}
+
+.option-list .icon:hover{
+   transform: scale(1.1);
+}
+
+.option-list .t-green:hover{
+   color: var(--green1);
+}
+
+.option-list .t-orange:hover{
+   color: var(--orange1);
+}
+
+.option-list .t-blue:hover{
+   color: var(--blue1);
+}
+
+.option-list .t-red:hover{
+   color: var(--red1);
+}

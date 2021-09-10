@@ -4,9 +4,13 @@
 
 .container .box-container{
    display: grid;
-   gap: 1rem;
+   gap: 1.5rem;
    grid-template-columns: 1fr 1fr;
-   padding: 1rem;
+   padding: 1.5rem;
+}
+
+.container .box-container .column-span-2{
+   grid-column: span 2;
 }
 
 .container .box-container .box{
@@ -16,8 +20,15 @@
 }
 
 .container .box-container .box .box-title{
-   padding: .5rem 1rem;
+   padding: .6rem 1rem;
    color: var(--light2);
-   background: var(--green1);
+   background: var(--orange1);
    text-transform: uppercase;
+}
+
+.container .box-container .box .box-body{
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 1.5rem 1rem;
 }

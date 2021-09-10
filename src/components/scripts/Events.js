@@ -1,4 +1,4 @@
-import { MainUrl} from "./MainUrl"
+import { MainUrl } from "./MainUrl"
 
 /*
 En este archivo se encuantran las funciones que generan
@@ -6,10 +6,14 @@ los formularios para crear, visuailizar, modificar y eliminar
 eventos
 */
 
+//Para refrescar la lista de eventos
+let refresh = () =>{}
+
 export const insertEventForm = props => {
 
    const {
-      setModalData
+      setModalData,
+      refreshEventList
    } = props
    
    const content = (
@@ -27,12 +31,15 @@ export const insertEventForm = props => {
       </>
    );
 
+   refresh = refreshEventList
+
    setModalData({
       type: "form",
       title: "Agregar un evento",
       formId: "agregarEvento",
       content,
-      onSubmit: insertEvent
+      onSubmit: insertEvent,
+      refresh: refreshEventList
    });
 }
 
@@ -45,7 +52,8 @@ export const updateEventForm = props => {
       final,
       elecciones,
       finalElecciones,
-      setModalData
+      setModalData,
+      refreshEventList
    } = props
 
    //formatear la fecha para que html: datetime-local reconozca la fecha
@@ -83,7 +91,9 @@ export const updateEventForm = props => {
          <label htmlFor="fecha_final">Final del evento</label>
          <input defaultValue={final} type="date" required name="fecha_final" id="fecha_final"/>
       </>
-   );
+   )
+
+   refresh = refreshEventList
 
    setModalData({
       type: "form",
@@ -91,7 +101,7 @@ export const updateEventForm = props => {
       formId: "modificarEvento",
       content,
       onSubmit: updateEvent
-   });
+   })
 }
 
 export const removeEventForm = props => {
@@ -99,7 +109,8 @@ export const removeEventForm = props => {
    const {
       idEvent,
       event,
-      setModalData
+      setModalData,
+      refreshEventList
    } = props
    
    const content = (
@@ -109,12 +120,15 @@ export const removeEventForm = props => {
       </>
    );
 
+   refresh = refreshEventList
+   
    setModalData({
       type: "form",
       title: "Eliminar",
       formId: "eliminarEvento",
       content,
-      onSubmit: removeEvent
+      onSubmit: removeEvent,
+      refresh: refreshEventList
    });
 }
 
@@ -148,45 +162,45 @@ export const showEventDetails = props => {
 
 const insertEvent = async form => {
 
-   const formData = new FormData(form);
-   const url = `${MainUrl}?show=evento&target=agregar_evento`;
+   const formData = new FormData(form)
+   const url = `${MainUrl}?show=evento&target=agregar_evento`
    const data = {
       method: 'POST',
       body: formData
    }
-   const request = await fetch(url, data);
-   const response = await request.json();
-   
-   console.log(response);
+   const request = await fetch(url, data)
+   const response = await request.json()
+   refresh()
+   return response
    
 }
 
 const updateEvent = async form => {
 
-   const formData = new FormData(form);
-   const url = `${MainUrl}?show=evento&target=modificar_evento`;
+   const formData = new FormData(form)
+   const url = `${MainUrl}?show=evento&target=modificar_evento`
    const data = {
       method: 'POST',
       body: formData
    }
-   const request = await fetch(url, data);
-   const response = await request.json();
-   
-   console.log(response);
+   const request = await fetch(url, data)
+   const response = await request.json()
+   refresh()
+   return response
    
 }
 
 const removeEvent = async form => {
 
-   const formData = new FormData(form);
-   const url = `${MainUrl}?show=evento&target=eliminar_evento`;
+   const formData = new FormData(form)
+   const url = `${MainUrl}?show=evento&target=eliminar_evento`
    const data = {
       method: 'POST',
       body: formData
    }
-   const request = await fetch(url, data);
-   const response = await request.json();
-   
-   console.log(response);
+   const request = await fetch(url, data)
+   const response = await request.json()
+   refresh()
+   return response
    
 }

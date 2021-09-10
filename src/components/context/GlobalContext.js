@@ -25,18 +25,26 @@ const getCandidateList = async (props) => {
 export const DataExport = createContext();
 export const GlobalContext = ({ children }) => {
    
+   //=================Candidate Screen
+   const [imgCache, setImgCache] = useState(Math.random())
+   
    //=================Home Screen
    const [eventList, setEventList] = useState([]);
-   //Llamar Lista de Eventos
-   useEffect(()=>{
-      getEventList({executeFn: setEventList});
+   
+   useEffect(()=>{ //Llamar Lista de Eventos
+      getEventList({executeFn: setEventList})
    }, [setEventList]);
 
-   const [candidateList, setCandidateList] = useState();   
-   const [categoryTarget, setCategoryTarget] = useState(0);
+   const refreshEventList = () => getEventList({executeFn: setEventList}); //Actualizar la lista de eventos
+   const refreshCanddiateList = () => getCandidateList({
+      executeFn: setCandidateList, 
+      target: categoryTarget
+   }); //Actualizar la lista de eventos
 
-   //Llamar Lista de Candidatos
-   useEffect(()=>{ 
+   const [candidateList, setCandidateList] = useState() 
+   const [categoryTarget, setCategoryTarget] = useState(0)
+
+   useEffect(()=>{ //Llamar Lista de Candidatos
          getCandidateList({
             executeFn: setCandidateList, 
             target: categoryTarget
@@ -44,11 +52,20 @@ export const GlobalContext = ({ children }) => {
    }, [categoryTarget]);
 
    //=================Event Screen
-   const [eventTarget, setEventTarget] = useState(0);
+   const [eventTarget, setEventTarget] = useState(0)
+   const [dateLimit, setDateLimit] = useState(false)
+   const getDate = () => { //Obtener fecha
+      let date = new Date().toLocaleString("en-US", {timeZone: "America/New_York"})
+      date = new Date(date)
+      return date
+   }
+   const toDate = e => { //De string a date
+      let date = new Date(e)
+      return date
+   }
    
-   //=================Candidate Screen
 
-   //Objeto con las variables a exportar
+   //=================Objeto con las variables a exportar
    const dataExport = {
       eventList,
       categoryTarget,
@@ -56,7 +73,15 @@ export const GlobalContext = ({ children }) => {
       candidateList,
       setCandidateList,
       eventTarget,
-      setEventTarget
+      setEventTarget,
+      refreshEventList,
+      imgCache,
+      setImgCache,
+      refreshCanddiateList,
+      getDate,
+      toDate,
+      dateLimit,
+      setDateLimit
    }
    return (
       <DataExport.Provider value={dataExport} >

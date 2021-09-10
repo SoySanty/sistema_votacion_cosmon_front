@@ -10,18 +10,29 @@
    background: var(--dark-t);
    box-sizing: border-box;
    z-index: 2;
+   overflow: auto;
+}
+
+.modal-container::-webkit-scrollbar{
+   display: none;
 }
 
 .modal-container .content-box {
    position: relative;
    display: flex;
-   gap: .5rem;
    flex-direction: column;
+   gap: .5rem;
    width: 27rem;
+   max-height: 95vh;
+   overflow: auto;
    background: var(--light2);
    border-radius: .5rem;
    padding: 2rem;
-   animation: openWindow .5s;
+   animation: openWindow .2s cubic-bezier(0,-0.04,.01,2.08);
+}
+
+.modal-container .content-box::-webkit-scrollbar{
+   display: none;
 }
 
 .modal-container .content-box p{
@@ -43,8 +54,66 @@
    background: var(--dark1);
 }
 
+.content-box .profile-photo{
+   position: relative;
+   width: 10rem;
+   height: 10rem;
+   margin: 0 auto 1rem;
+   border-radius: 50%;
+   box-shadow: 0 0 .7rem var(--dark1);
+   overflow: hidden;
+}
+
+.content-box .profile-photo img{
+   width: 100%;
+   height: 100%;
+}
+
 .modal-container .content-box .modal-form{
    width: 100%;
+}
+
+.content-box .modal-form .picture{
+   display: flex;
+   flex-direction: column-reverse;
+   justify-content: center;
+   align-items: center;
+   gap: .3rem;
+   margin-bottom: .5rem;
+}
+
+.content-box .modal-form .picture label{
+   transition: .2s;
+   max-width: 10rem;
+   max-height: 10rem;
+   width: 10rem;
+   height: 10rem;
+   border: 2px solid var(--green1);
+   border-radius: 50%;
+   background: var(--light-t);
+   overflow: hidden;
+   cursor: pointer;
+   box-shadow: 0 0 .4rem var(--dark1);
+}
+
+.content-box .modal-form .picture label:hover{
+   transform: scale(1.02);
+}
+
+.content-box .modal-form .picture label img{
+   width: 100%;
+   height: 100%;
+}
+
+.content-box .modal-form .picture p{
+   font-size: .8rem;
+   padding: 0;
+   color: var(--green1);
+   background: none;
+}
+
+.content-box .modal-form .picture .loadError{
+   color: var(--red1);
 }
 
 .modal-container .content-box input,
@@ -57,12 +126,17 @@
    margin: .5rem 0;
 }
 
+.modal-container .content-box select{
+   cursor: pointer;
+}
+
 .modal-container .content-box .modal-form label{
    font-size: .8rem;
 }
 
 .modal-container .content-box .modal-form input[type=text],
 .modal-container .content-box .modal-form input[type=date],
+.modal-container .content-box .modal-form input[type=number],
 .modal-container .content-box .modal-form input[type=datetime-local],
 .modal-container .content-box .modal-form select{
    width: 100%;
@@ -76,24 +150,36 @@
    margin-top: 1rem;
 }
 
-.modal-container .content-box .buttons input[type=submit]{
+.modal-container .content-box .buttons input[type=submit],
+.modal-container .content-box .buttons input[type=button]{
    transition: .2s;
    margin: 0 .5rem;
    cursor: pointer;
    padding: .5rem 2rem;
+   color: var(--light2);
 }
 
-.modal-container .content-box .buttons input[type=submit]:hover{
+.modal-container .content-box input[type=number]::-webkit-outer-spin-button,
+.modal-container .content-box input[type=number]::-webkit-inner-spin-button{
+   display: none;
+}
+
+.modal-container .content-box .buttons input[type=submit]:hover,
+.modal-container .content-box .buttons input[type=button]:hover{
    filter: contrast(1.1);
    transform: scale(1.03);
 }
 
 .modal-container .content-box .buttons .btn-cancel{
-   background: var(--red1);
-   color: var(--light2);
+   background: var(--dark2);
 }
 
 .modal-container .content-box .buttons .btn-accept{
-   background: var(--blue1);
-   color: var(--light2);
+   background: var(--green1);
+}
+
+.modal-container .content-box .modal-form .twoSections{
+   display: flex;
+   width: 100%;
+   gap: 1rem;
 }

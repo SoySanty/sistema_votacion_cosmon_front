@@ -6,11 +6,14 @@ los formularios para crear, visuailizar, modificar y eliminar
 eventos
 */
 
+let refresh;
+
 export const insertCategoryForm = props => {
 
    const {
       setModalData,
-      eventList
+      eventList,
+      setRefresh
    } = props
 
    const content = (
@@ -29,6 +32,8 @@ export const insertCategoryForm = props => {
       </>
    );
 
+   refresh = setRefresh
+   
    setModalData({
       type: "form",
       title: "Agregar una Categoría",
@@ -45,7 +50,8 @@ export const updateCategoryForm = props => {
       idCategory,
       category,
       eventList,
-      setModalData
+      setModalData,
+      setRefresh
    } = props
    
    const content = (
@@ -67,6 +73,8 @@ export const updateCategoryForm = props => {
       </>
    );
 
+   refresh = setRefresh
+         
    setModalData({
       type: "form",
       title: "Modificar una categoría",
@@ -81,7 +89,8 @@ export const removeCategoryForm = props => {
    const {
       idCategory,
       category,
-      setModalData
+      setModalData,
+      setRefresh
    } = props
    
    const content = (
@@ -90,6 +99,8 @@ export const removeCategoryForm = props => {
          <p>¿Estas seguro que quieres eliminar <b className="t-green">"{category}"</b> de forma permanente?</p>
       </>
    );
+
+   refresh = setRefresh
 
    setModalData({
       type: "form",
@@ -141,7 +152,7 @@ const insertCategory = async form => {
    }
    const request = await fetch(url, data);
    const response = await request.json();
-   
+   refresh(1)
    console.log(response);
    
 }
@@ -156,7 +167,7 @@ const updateCategory = async form => {
    }
    const request = await fetch(url, data);
    const response = await request.json();
-   
+   refresh(1)
    console.log(response);
    
 }
@@ -170,7 +181,8 @@ const removeCategory = async form => {
       body: formData
    }
    const request = await fetch(url, data);
-   const response = await request.json();
+   const response = await request.json()
+   refresh(1)
    console.log(response);
    
 }

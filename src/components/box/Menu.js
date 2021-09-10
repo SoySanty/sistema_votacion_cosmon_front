@@ -4,10 +4,10 @@ import '../styles/box/menu.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
+   faUsersCog,
    faHome,
    faAddressCard,
    faCalendar,
-   faChartBar
 } from '@fortawesome/free-solid-svg-icons'
 
 const Menu = ({ active }) => {
@@ -52,10 +52,10 @@ const Menu = ({ active }) => {
                            Candidatos
                         </li>
                      </Link>
-                     <Link to="/estadisticas">
-                        <li className={switchActive("estadisticas")}>
-                           <FontAwesomeIcon icon={faChartBar} className="icon" />
-                           Estadísticas
+                     <Link to="/usuario">
+                        <li className={switchActive("usuario")}>
+                           <FontAwesomeIcon icon={faUsersCog} className="icon" />
+                           Usuario
                         </li>
                      </Link>
                   </ul>

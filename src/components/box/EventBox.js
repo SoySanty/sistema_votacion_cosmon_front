@@ -14,8 +14,8 @@ const EventBox = () => {
    */
    const {
       eventList,
-      setCategoryTarget
-   } = useContext(DataExport);
+      setCategoryTarget,
+   } = useContext(DataExport)
    
    //Nro de evento para extraer lista de categorías
    const [eventTarget, setEventTarget] = useState(0);
@@ -62,7 +62,7 @@ const EventBox = () => {
             <DropDownA
                className="dropdown"
                titleText="Seleccione un evento"
-               data={eventList}
+               data={eventList ? eventList : [{text: "Sin datos...", nro: null}]}
                textKey = "evento"
                idKey = "nro"
                onClick = {setNroEventTarget}
@@ -77,11 +77,11 @@ const EventBox = () => {
                onClick = {setNroCategoryTarget}
             />
             
-            <Link to="/eventos">
+            <Link to="/eventos" className="link-button">
                <Button
                   className="btn-admin-event"
                   type="admin-event"
-                  text="Administrar candidatos"
+                  text="Administrar eventos"
                />
             </Link>
 

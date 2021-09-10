@@ -1,0 +1,21 @@
+.candidate-list-box .box-body{
+   display: flex;
+   flex-direction: column;
+   gap: .5rem;
+   padding: 1rem;
+}
+
+.candidate-list-box .box-body .candidate-item{
+   padding: .5rem 1rem;
+   background: var(--light2);
+   border-radius: .5rem;
+}
+
+.candidate-list-box .box-body .candidate-item{
+   display: flex;
+   justify-content: space-between;
+}
+
+.candidate-list-box .box-body .candidate-item .icon{
+   cursor: pointer;
+}

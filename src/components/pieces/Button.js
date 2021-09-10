@@ -4,7 +4,12 @@ import '../styles/pieces/button.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
    faCalendarPlus,
-   faAddressCard
+   faCalendar,
+   faPlus,
+   faCalendarDay,
+   faAddressCard,
+   faUserPlus,
+   faPortrait
 } from '@fortawesome/free-solid-svg-icons';
 
 const Button = (props) => {
@@ -19,8 +24,13 @@ const Button = (props) => {
 
    //Define el tipo de botón
    const btnList = {
-      'admin-event': <FontAwesomeIcon icon={faCalendarPlus} className="icon" />,
+      'admin-event': <FontAwesomeIcon icon={faCalendar} className="icon" />,
+      'add-event': <FontAwesomeIcon icon={faCalendarPlus} className="icon" />,
+      'add-category': <FontAwesomeIcon icon={faCalendarDay} className="icon" />,
+      'add-something': <FontAwesomeIcon icon={faPlus} className="icon" />,
       'admin-candidate': <FontAwesomeIcon icon={faAddressCard} className="icon" />,
+      'add-candidate': <FontAwesomeIcon icon={faUserPlus} className="icon" />,
+      'asign-candidate': <FontAwesomeIcon icon={faPortrait} className="icon" />,
       default: <></>
    }
 

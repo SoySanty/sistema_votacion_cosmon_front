@@ -5,6 +5,10 @@
 .event-box .box-body{
    display: flex;
    flex-direction: column;
-   gap: 1rem;
+   gap: .5rem;
    padding: 1rem;
+}
+
+.event-box .box-body .btn{
+   margin-top: .5rem;
 }

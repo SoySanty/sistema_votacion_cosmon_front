@@ -16,10 +16,7 @@ import {
 const EventAdminBox = () => {
 
    const [modal, setModal] = useState(false);
-   const {
-      eventList,
-      setEventTarget
-   } = useContext(DataExport);
+   const {eventList, setEventTarget, refreshEventList, getDate, toDate, setDateLimit} = useContext(DataExport);
    const [
       modalData, 
       setModalData
@@ -57,6 +54,7 @@ const EventAdminBox = () => {
                      key={index}
                      onClick={()=>{
                         setEventTarget(e.nro)
+                        toDate(e.limite_edicion) > getDate() ? setDateLimit(false) : setDateLimit(true)
                         activeList(index)
                      }}
                   >
@@ -68,23 +66,27 @@ const EventAdminBox = () => {
                      </p>
                      <div className="option-list">
                         <div className="icon">
-                           <FontAwesomeIcon 
-                              title="Detalles"
-                              icon={faEye} 
-                              className="icon t-green" 
-                              onClick={() => {
-                                 showEventDetails({
-                                    event: e.evento,
-                                    inicio: e.inicio,
-                                    elecciones: e.dia_elecciones,
-                                    finalElecciones: e.dia_elecciones_final,
-                                    final: e.final,
-                                    setModalData
-                                 })
-                                 setModal(true)
-                              }} 
-                           />
+                              <FontAwesomeIcon 
+                                 title="Detalles"
+                                 icon={faEye} 
+                                 className="icon t-green" 
+                                 onClick={() => {
+                                    showEventDetails({
+                                       event: e.evento,
+                                       inicio: e.inicio,
+                                       elecciones: e.dia_elecciones,
+                                       finalElecciones: e.dia_elecciones_final,
+                                       final: e.final,
+                                       setModalData
+                                    })
+                                    setModal(true)
+                                 }} 
+                              />
                         </div>
+
+                        {
+                        toDate(e.limite_edicion) >= getDate() ?
+                        <>
                         <div className="icon">
                            <FontAwesomeIcon 
                               title="Modificar"
@@ -98,6 +100,7 @@ const EventAdminBox = () => {
                                     final: e.final,
                                     elecciones: e.dia_elecciones,
                                     finalElecciones: e.dia_elecciones_final,
+                                    refreshEventList,
                                     setModalData
                                  })
                                  setModal(true)
@@ -113,12 +116,16 @@ const EventAdminBox = () => {
                                  removeEventForm({
                                     idEvent: e.nro,
                                     event: e.evento,
+                                    refreshEventList,
                                     setModalData
                                  })
                                  setModal(true)
                               }} 
                            />
                         </div>
+                        </>
+                        : <></>
+                        }
                      </div>
                   </div>
                ))
@@ -130,8 +137,9 @@ const EventAdminBox = () => {
             <Button 
                className = "add-event-button"
                text = "Agregar un evento"
+               type = "add-event"
                onClick = {()=>{
-                  insertEventForm({setModalData})
+                  insertEventForm({setModalData, refreshEventList})
                   setModal(true)
                }}
             />

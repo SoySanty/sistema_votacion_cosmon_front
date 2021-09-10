@@ -26,7 +26,7 @@ const CandidateBox = () => {
                : "Seleccione una categoría con candidatos disponibles..."
             }
 
-            <Link to="/candidatos">
+            <Link to="/candidatos"  className="link-button">
                <Button
                   className="btn-admin-candidate"
                   type="admin-candidate"

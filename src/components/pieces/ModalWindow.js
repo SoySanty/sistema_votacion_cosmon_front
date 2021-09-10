@@ -26,15 +26,42 @@ const buildForm = props => {
       >
         { content }
         <div className="buttons">
-          <input type="submit" value="Aceptar" className="btn-accept"/>
           <input 
-            type="submit" 
+            type="button" 
             value="Cancelar" 
             className="btn-cancel"
             onClick={() => {
               modalClose()
             }}
           />
+          <input type="submit" value="Aceptar" className="btn-accept"/>
+        </div>
+      </form>
+    , 
+    multipartForm: 
+      <form 
+        action="#" 
+        className="modal-form"
+        method="POST"
+        encType="multipart/form-data"
+        id={formId} 
+        onSubmit={e=>{
+          e.preventDefault()
+          onSubmit(e.target)
+          modalClose()
+        }}
+      >
+        { content }
+        <div className="buttons">
+          <input 
+            type="button" 
+            value="Cancelar" 
+            className="btn-cancel"
+            onClick={() => {
+              modalClose()
+            }}
+          />
+          <input type="submit" value="Aceptar" className="btn-accept"/>
         </div>
       </form>
     , 
@@ -68,7 +95,7 @@ const ModalWindow = (props) => {
   return (
     <div 
       className="modal-container"
-      onClick={e => {
+      onMouseDown={e => {
         if(e.target.classList.contains("modal-container")){
           e.preventDefault();
           modalClose();

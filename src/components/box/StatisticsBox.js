@@ -15,7 +15,7 @@ const StatisticsBox = () => {
          const aux = candidateList.map((e, index) => [
             `${e.apellidos} ${e.nombres}`, 
             parseInt(e.cantidad_votos), 
-            `color: ${index % 2 === 0 ? "#20818C" : "#262626"}`
+            `color: ${index % 2 === 0 ? "#13aa84" : "#262626"}`
          ])
          setChartData([["Candidatos", "Votos", { role: "style" }],...aux]);
 
@@ -29,7 +29,7 @@ const StatisticsBox = () => {
             <p>Estadísticas</p>
          </div>
 
-         <div className="statistics-chart">
+         <div className="statistics-chart box-body">
             <div className="chart">
                {
                   candidateList ? (

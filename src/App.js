@@ -15,7 +15,7 @@ function App() {
       <Switch>
 
         <Route path='/' exact>
-            <Screens target="home" />
+            <Screens target="home"/>
         </Route>
 
         <Route path='/eventos' exact>
@@ -24,6 +24,10 @@ function App() {
 
         <Route path='/candidatos' exact>
             <Screens target="candidatos" />
+        </Route>
+
+        <Route path='/usuario' exact>
+          <Screens target="usuario" />
         </Route>
 
         <Route path='/login' exact>

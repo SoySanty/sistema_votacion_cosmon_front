@@ -13,11 +13,27 @@ import {
 } from '../scripts/Category'
 import Button from '../pieces/Button'
 
+const getCategoryList = async props =>{
+   const {actionFn, target} = props;
+   const body = new FormData()
+   body.append("nro_evento", target)
+   const url = `${MainUrl}?show=categoria&target=filtrar_categoria`
+   const data = {
+      method: "POST",
+      body
+   }
+   const request = await fetch(url, data)
+   const response = await request.json()
+   actionFn(response);
+}
+
 const CategoryAdminBox = () => {
 
-   const {eventTarget, setEventTarget, eventList} = useContext(DataExport)
+   const {eventTarget, setEventTarget, eventList, dateLimit, getDate, toDate} = useContext(DataExport)
    const [categoryList, setCategoryList] = useState([])
-   const [modal, setModal] = useState(false);
+   const [modal, setModal] = useState(false)
+   const [refresh, setRefresh] = useState(0)
+   const [eventUnable, setEventUnabe] = useState([])//Lista de eventos disponbles
    const [modalData, setModalData] = useState({
          type: "",
          title: "",
@@ -30,21 +46,17 @@ const CategoryAdminBox = () => {
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [])
    useEffect(()=>{
-      const getCategoryList = async () =>{
-         const body = new FormData()
-         body.append("nro_evento", eventTarget)
-         const url = `${MainUrl}?show=categoria&target=filtrar_categoria`
-         const data = {
-            method: "POST",
-            body
-         }
-         const request = await fetch(url, data)
-         const response = await request.json()
-         setCategoryList(response);
-      }
-      getCategoryList()
-   }, [eventTarget])
-   
+      getCategoryList({
+         actionFn: setCategoryList, 
+         target: eventTarget
+      })
+      setRefresh(0)
+   }, [eventTarget, refresh])
+   //Filtrar lista de eventos los cuales pueden ser editados
+   useEffect(()=>{ 
+      const eventFilter = eventList.filter( e => toDate(e.limite_edicion) > getDate() )
+      setEventUnabe(eventFilter)
+   },[eventList, getDate, toDate])
    
    return (
       <div className="box category-admin-box">
@@ -80,38 +92,47 @@ const CategoryAdminBox = () => {
                                  }} 
                               />
                            </div>
-                           <div className="icon">
-                              <FontAwesomeIcon 
-                                 title="Modificar"
-                                 icon={faEdit} 
-                                 className="icon t-blue" 
-                                 onClick={() => {
-                                    updateCategoryForm({
-                                       idEvent: e.nro_evento,
-                                       idCategory: e.nro,
-                                       category: e.categoria,
-                                       eventList,
-                                       setModalData
-                                    })
-                                    setModal(true)
-                                 }} 
-                              />
-                           </div>
-                           <div className="icon">
-                              <FontAwesomeIcon 
-                                 title="Eliminar"
-                                 icon={faTrashAlt} 
-                                 className="icon t-red" 
-                                 onClick={() => {
-                                    removeCategoryForm({
-                                       idCategory: e.nro,
-                                       category: e.categoria,
-                                       setModalData
-                                    })
-                                    setModal(true)
-                                 }} 
-                              />
-                           </div>
+                           {
+                              !dateLimit ?
+                              <>
+                              <div className="icon">
+                                 <FontAwesomeIcon 
+                                    title="Modificar"
+                                    icon={faEdit} 
+                                    className="icon t-blue" 
+                                    onClick={() => {
+                                       updateCategoryForm({
+                                          idEvent: e.nro_evento,
+                                          idCategory: e.nro,
+                                          category: e.categoria,
+                                          eventList,
+                                          setRefresh,
+                                          setModalData
+                                       })
+                                       setModal(true)
+                                    }} 
+                                 />
+                              </div>
+                              <div className="icon">
+                                 <FontAwesomeIcon 
+                                    title="Eliminar"
+                                    icon={faTrashAlt} 
+                                    className="icon t-red" 
+                                    onClick={() => {
+                                       removeCategoryForm({
+                                          idCategory: e.nro,
+                                          category: e.categoria,
+                                          setRefresh,
+                                          setModalData
+                                       })
+                                       setModal(true)
+                                    }} 
+                                 />
+                              </div>
+                           </>
+
+                           : <></>
+                           }
                         </div>
                      </div>
                   ))
@@ -121,8 +142,9 @@ const CategoryAdminBox = () => {
             <Button 
                className = "add-event-button"
                text = "Agregar una categoría"
+               type = "add-category"
                onClick = {()=>{
-                  insertCategoryForm({setModalData, eventList})
+                  insertCategoryForm({setModalData, eventList: eventUnable, setRefresh})
                   setModal(true)
                }}
             />

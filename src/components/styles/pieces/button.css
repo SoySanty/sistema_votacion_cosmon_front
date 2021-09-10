@@ -1,10 +1,15 @@
+.link-button{
+  width: max-content;
+}
+
 .btn{
-   padding: .5rem 1rem;
-   border: none;
-   color: var(--light2);
-   background: var(--green1);
-   border-radius: .5rem;
-   cursor: pointer;
+  width: max-content;
+  padding: .5rem 1rem;
+  border: none;
+  color: var(--light1);
+  background: var(--green1);
+  border-radius: .5rem;
+  cursor: pointer;
  }
  
  .btn:hover{
