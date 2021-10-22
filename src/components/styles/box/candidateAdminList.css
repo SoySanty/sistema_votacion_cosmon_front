@@ -7,9 +7,15 @@
 
 .candidate-list .box-content .header-table{
    display: flex;
+   gap: 1rem;
    justify-content: space-between;
-   align-items: flex-start;
+   align-items: center;
    margin-bottom: 1rem;
+}
+
+.candidate-list .box-content .header-table .btn-admin-candidate{
+   text-align: center;
+   margin: 0;
 }
 
 .box-content .candidate-table-container{
@@ -89,4 +95,18 @@
 
 .option-list .t-red:hover{
    color: var(--red1);
+}
+
+/*
+-----------------------------------MEDIA QUERYES
+*/
+
+@media screen and (max-width: 40rem) {
+   .candidate-list{
+      grid-column: span 1;
+   }
+   .box-content {
+      max-width: 100%;
+      overflow-x: auto;
+   }
 }

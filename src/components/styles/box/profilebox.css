@@ -2,9 +2,16 @@
    display: flex;
    justify-content: space-between;
    align-items: center;
-   padding: .5rem 1rem;
+   padding: 0rem 1rem;
+   max-height: 3.2rem;
+   height: 3.2rem;
    color: var(--light2);
    background: var(--dark1);
+   user-select: none;
+}
+
+.profile-box .icon-menu{
+   display: none;
 }
 
 .profile-box .profile-card{
@@ -33,8 +40,40 @@
 }
 
 .profile-card .profile-img{
-   width: 3rem;
-   height: 3rem;
+   width: 2.5rem;
+   height: 2.5rem;
    border-radius: 50%;
    border: 2px solid var(--green1);
+}
+
+
+/*
+------------------------------------------MEDIA QUERYES
+*/
+@media screen and (max-width: 57rem){
+   .profile-box{
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0 .5rem;
+   }
+   .profile-box .profile-title{
+      display: none;
+   }
+   .profile-box .icon-menu{
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+   }
+   .profile-box .profile-card{
+      flex-direction: row-reverse;
+   }
+   .profile-card .profile-text p{
+      text-align: left;
+   }
+   .profile-card .profile-img{
+      width: 2.5rem;
+      height: 2.5rem;
+   }
 }

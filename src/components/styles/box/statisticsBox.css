@@ -12,3 +12,13 @@
 .statistics-box .statistics-chart .chart{
    color: var(--dark1);
 }
+
+/*
+-----------------------------------MEDIA QUERYES
+*/
+
+@media screen and (max-width: 40rem) {
+   .statistics-box{
+      grid-column: span 1;
+   }
+}

@@ -1,102 +1,103 @@
-import React from 'react'
-import '../styles/pieces/modalWindow.css';
+import React from "react";
+import "../styles/pieces/modalWindow.css";
 
-const buildForm = props => {
-
+const buildForm = (props) => {
   const {
     type = "form",
     formId = "modalId",
     content = {},
     modalClose,
-    onSubmit = ()=>{}
+    onSubmit = () => {},
   } = props;
 
   const typeContent = {
-    form: 
-      <form 
-        action="#" 
+    form: (
+      <form
+        action="#"
         className="modal-form"
         method="POST"
-        id={formId} 
-        onSubmit={e=>{
-          e.preventDefault()
-          onSubmit(e.target)
-          modalClose()
+        id={formId}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(e.target);
+          modalClose();
         }}
       >
-        { content }
+        {content}
         <div className="buttons">
-          <input 
-            type="button" 
-            value="Cancelar" 
+          <input
+            type="button"
+            value="Cancelar"
             className="btn-cancel"
             onClick={() => {
-              modalClose()
+              modalClose();
             }}
           />
-          <input type="submit" value="Aceptar" className="btn-accept"/>
+          <input type="submit" value="Aceptar" className="btn-accept" />
         </div>
       </form>
-    , 
-    multipartForm: 
-      <form 
-        action="#" 
+    ),
+    multipartForm: (
+      <form
+        action="#"
         className="modal-form"
         method="POST"
         encType="multipart/form-data"
-        id={formId} 
-        onSubmit={e=>{
-          e.preventDefault()
-          onSubmit(e.target)
-          modalClose()
+        id={formId}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(e.target);
+          modalClose();
         }}
       >
-        { content }
+        {content}
         <div className="buttons">
-          <input 
-            type="button" 
-            value="Cancelar" 
+          <input
+            type="button"
+            value="Cancelar"
             className="btn-cancel"
             onClick={() => {
-              modalClose()
+              modalClose();
             }}
           />
-          <input type="submit" value="Aceptar" className="btn-accept"/>
+          <input type="submit" value="Aceptar" className="btn-accept" />
         </div>
       </form>
-    , 
-    info: 
+    ),
+    info: (
       <>
-        { content }
+        {content}
         <div className="buttons">
-          <input 
-            type="submit" 
-            value="Aceptar" 
+          <input
+            type="submit"
+            value="Aceptar"
             className="btn-accept"
             onClick={() => {
-              modalClose()
+              modalClose();
             }}
           />
         </div>
       </>
-  }
+    ),
+  };
 
   return typeContent[type];
-  
-}
+};
 
 const ModalWindow = (props) => {
+  const { title = "Formulario vacío", modalClose } = props;
 
-  const {
-    title = "Formulario vacío",
-    modalClose
-  } = props
-  
   return (
-    <div 
+    <div
       className="modal-container"
-      onMouseDown={e => {
-        if(e.target.classList.contains("modal-container")){
+      onMouseDown={(e) => {
+        if (e.target.classList.contains("modal-container")) {
+          e.preventDefault();
+          modalClose();
+        }
+      }}
+      onTouchStart={(e) => {
+        if (e.target.classList.contains("modal-container")) {
           e.preventDefault();
           modalClose();
         }
@@ -104,12 +105,10 @@ const ModalWindow = (props) => {
     >
       <div className="content-box">
         <p className="modal-title">{title}</p>
-        {
-          buildForm(props)
-        }
+        {buildForm(props)}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ModalWindow
+export default ModalWindow;

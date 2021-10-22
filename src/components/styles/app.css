@@ -4,7 +4,15 @@
    min-height: 100vh;
    font-size: .9rem;
 }
-
 .disabled{
    display: none;
+}
+
+/*
+------------------------------------------MEDIA QUERYES
+*/
+@media screen and (max-width: 57rem){
+   .all-container{
+      grid-template-columns: 1fr;
+   }
 }

@@ -16,6 +16,8 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
+  "website": "http://sistema-elecciones.atwebpages.com",
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
